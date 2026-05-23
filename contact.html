@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Camp Sales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            50: '#f2f7f4',
+                            100: '#e2eee7',
+                            600: '#2d6a4f',
+                            700: '#1b4332',
+                            800: '#081c15',
+                        },
+                        amber: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-forest-50 text-forest-800 font-sans antialiased">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-forest-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-forest-700 tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-tent text-amber-500"></i>
+                        <span>Camp<span class="text-forest-600">Sales</span></span>
+                    </a>
+                </div>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Home</a>
+                    
+                    <!-- Products Dropdown Trigger -->
+                    <div class="relative group">
+                        <button class="text-forest-700 group-hover:text-amber-600 font-medium transition-colors flex items-center gap-1 py-2">
+                            Products <i class="fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                            <a href="products.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Product List</a>
+                            <a href="index.html#categories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Categories</a>
+                            <a href="index.html#promotions" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Promotions</a>
+                            <a href="index.html#reviews" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Reviews</a>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="text-amber-600 font-medium transition-colors">Contact</a>
+                </div>
+
+                <!-- Right Side Actions (Cart & Profile) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Cart -->
+                    <button class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors">
+                        <i class="fa-solid fa-basket-shopping text-xl"></i>
+                        <span class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">3</span>
+                    </button>
+
+                    <!-- Profile Dropdown Container -->
+                    <div class="relative" id="profile-container">
+                        <button id="profileButton" class="flex items-center gap-2 p-1 rounded-full border border-gray-200 hover:border-forest-600 transition-colors focus:outline-none">
+                            <img src="images/user_profile.png" alt="User Profile" class="h-8 w-8 rounded-full object-cover">
+                        </button>
+                        
+                        <!-- Profile Menu Dropdown -->
+                        <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden z-50">
+                            <div class="px-4 py-2 border-b border-gray-100">
+                                <p class="text-xs text-gray-400">Signed in as</p>
+                                <p class="text-sm font-semibold text-forest-800 truncate">Thet Naung Soe</p>
+                            </div>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-regular fa-user mr-2 text-gray-400"></i> My Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-solid fa-gear mr-2 text-gray-400"></i> Settings</a>
+                            <hr class="my-1 border-gray-100">
+                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"><i class="fa-solid fa-arrow-right-from-bracket mr-2 text-red-400"></i> Logout</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-forest-700 hover:text-amber-600">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Link list -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-1">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Home</a>
+            <a href="index.html#categories" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Categories</a>
+            <a href="index.html#promotions" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Promotions</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">About</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative bg-forest-800 text-white py-20 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/deep_forest_sunlight_path.jpeg" alt="Deep forest sunlight path" class="w-full h-full object-cover opacity-25">
+            <div class="absolute inset-0 bg-gradient-to-b from-forest-800/50 via-forest-800 to-forest-50"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
+            <span class="text-amber-500 font-bold uppercase tracking-wider text-sm block mb-3">Base Camp Support</span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">
+                Connect With <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-400">Our Team</span>
+            </h1>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Have questions about our camping gear, bulk orders, or shipping timelines across Myanmar? Our baseline support crew is ready to help you gear up.
+            </p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTACT CONTENT CONTAINER -->
+    <div class="py-16 md:py-24 bg-forest-50 text-forest-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                
+                <!-- Left Side: Contact Info Cards (Spans 5 Columns) -->
+                <div class="lg:col-span-5 space-y-6 sm:space-y-8">
+                    
+                    <!-- Info Card 1: Showroom -->
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-forest-100 flex gap-5 items-start transition-all hover:shadow-md">
+                        <div class="w-12 h-12 rounded-xl bg-forest-100 text-forest-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-forest-700 mb-2">Yangon Showroom</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                No. 123, Pyay Road, Kamayut Township,<br>Yangon, Myanmar
+                            </p>
+                            <p class="text-xs text-amber-600 font-semibold mt-3">
+                                Open Daily: 9:00 AM – 6:00 PM
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Info Card 2: Support Lines -->
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-forest-100 flex gap-5 items-start transition-all hover:shadow-md">
+                        <div class="w-12 h-12 rounded-xl bg-forest-100 text-forest-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-forest-700 mb-2">Call & Viber Support</h3>
+                            <p class="text-sm text-gray-600 mb-1">
+                                <span class="font-medium text-forest-800">Main Office:</span> +95 9 1234 56789
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="font-medium text-forest-800">Viber Sales:</span> +95 9 9876 54321
+                            </p>
+                            <p class="text-xs text-gray-400 mt-2">Mon-Sat response inside 2 hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- Info Card 3: Digital Channels -->
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-forest-100 flex gap-5 items-start transition-all hover:shadow-md">
+                        <div class="w-12 h-12 rounded-xl bg-forest-100 text-forest-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-forest-700 mb-2">Digital Inquiries</h3>
+                            <p class="text-sm text-gray-600 mb-1">
+                                <span class="font-medium text-forest-800">General:</span> info@campsales.com
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="font-medium text-forest-800">Support:</span> support@campsales.com
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Banner Callout -->
+                    <div class="bg-gradient-to-br from-forest-700 to-forest-800 text-white p-6 sm:p-8 rounded-2xl shadow-md relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[radial-gradient(#2d6a4f_1px,transparent_1px)] [background-size:12px_12px] opacity-20"></div>
+                        <div class="relative z-10">
+                            <h4 class="font-bold text-base mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-question text-amber-500"></i> Looking for quick help?
+                            </h4>
+                            <p class="text-xs text-emerald-100 leading-relaxed mb-4">
+                                Check out our sizing configurations and instant delivery guidelines before sending an email query.
+                            </p>
+                            <a href="#" class="text-xs font-bold text-amber-500 hover:text-amber-400 inline-flex items-center gap-1 transition-colors">
+                                Read Ordering FAQs <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Side: Contact Form Card (Spans 7 Columns) -->
+                <div class="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100">
+                    <h2 class="text-2xl font-bold text-forest-700 mb-2">Send an Instant Message</h2>
+                    <p class="text-sm text-gray-500 mb-8">Fields marked with an asterisk (*) are required.</p>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Full Name -->
+                            <div>
+                                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Your Name *</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-forest-50 border border-gray-200 text-sm text-forest-800 focus:ring-2 focus:ring-amber-500 focus:border-transparent focus:outline-none transition-all" placeholder="e.g. Su Su">
+                            </div>
+                            <!-- Phone Number -->
+                            <div>
+                                <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Phone Number *</label>
+                                <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-xl bg-forest-50 border border-gray-200 text-sm text-forest-800 focus:ring-2 focus:ring-amber-500 focus:border-transparent focus:outline-none transition-all" placeholder="e.g. 09123456789">
+                            </div>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div>
+                            <label for="email" class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-xl bg-forest-50 border border-gray-200 text-sm text-forest-800 focus:ring-2 focus:ring-amber-500 focus:border-transparent focus:outline-none transition-all" placeholder="name@domain.com">
+                        </div>
+
+                        <!-- Inquiry Subject Type -->
+                        <div>
+                            <label for="subject" class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Inquiry Type *</label>
+                            <div class="relative">
+                                <select id="subject" required class="w-full px-4 py-3 rounded-xl bg-forest-50 border border-gray-200 text-sm text-forest-800 focus:ring-2 focus:ring-amber-500 focus:border-transparent focus:outline-none transition-all appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Select an option...</option>
+                                    <option value="sales">Product & Stock Availability</option>
+                                    <option value="order">Order Tracking & Delivery</option>
+                                    <option value="wholesale">Wholesale & Corporate Supply</option>
+                                    <option value="feedback">Feedback & Suggestions</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message text area -->
+                        <div>
+                            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Your Message *</label>
+                            <textarea id="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-forest-50 border border-gray-200 text-sm text-forest-800 focus:ring-2 focus:ring-amber-500 focus:border-transparent focus:outline-none transition-all resize-none" placeholder="Write down your detailed inquiry here..."></textarea>
+                        </div>
+
+                        <!-- Submit Action Button -->
+                        <button type="submit" class="w-full sm:w-auto px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-lg shadow-amber-500/10 transition-all transform hover:-translate-y-0.5 inline-flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Full-Width Map Interactive Segment -->
+            <div class="mt-20 md:mt-28">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-forest-700">Find Us on the Map</h2>
+                        <p class="text-sm text-gray-500">Visit our store to check item configurations in person.</p>
+                    </div>
+                </div>
+                
+                <!-- Map Embed Container with responsive height aspect handling -->
+                <div class="w-full h-[350px] sm:h-[450px] rounded-3xl overflow-hidden shadow-sm border border-gray-100 relative bg-gray-100">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3819.187397750849!2d96.1328913!3d16.8170887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDQ5JzAxLjUiTiA5NsKwMDcnNTguNCJF!5e0!3m2!1sen!2smm!4v1710000000000!5m2!1sen!2smm" 
+                        class="absolute inset-0 w-full h-full border-0"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODERN FOOTER -->
+    <footer class="bg-forest-800 text-gray-400 pt-20 pb-10 border-t border-forest-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <!-- Brand Column -->
+            <div class="md:col-span-1">
+                <a href="#" class="text-2xl font-bold text-white tracking-tight flex items-center gap-2 mb-6">
+                    <i class="fa-solid fa-tent text-amber-500"></i>
+                    <span>Camp<span class="text-emerald-400">Sales</span></span>
+                </a>
+                <p class="text-sm leading-relaxed mb-6">Providing high-grade, reliable camping and hiking gear to outdoor enthusiasts across Myanmar.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Quick Navigation</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home Base</a></li>
+                    <li><a href="index.html#categories" class="hover:text-white transition-colors">Gear Categories</a></li>
+                    <li><a href="index.html#promotions" class="hover:text-white transition-colors">Special Offers</a></li>
+                    <li><a href="index.html#reviews" class="hover:text-white transition-colors">Customer Stories</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Support & Policy</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">Sizing Guide</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Warranty Info</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact/About Section Link -->
+            <div id="contact">
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Get in Touch</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-amber-500"></i>
+                        <span>No. 123, Pyay Road, Kamayut Township, Yangon, Myanmar</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-amber-500"></i>
+                        <span>+95 9 1234 56789</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-amber-500"></i>
+                        <span>info@campsales.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-forest-700/60 text-center md:flex md:items-center md:justify-between text-xs">
+            <p>&copy; 2026 Camp Sales Co., Ltd. All rights reserved.</p>
+            <p class="mt-4 md:mt-0">Designed beautifully for the wilderness.</p>
+        </div>
+    </footer>
+
+    <!-- VANILLA JAVASCRIPT (INTERACTION HANDLERS) -->
+    <script>
+        // Profile Dropdown Toggle Logic
+        const profileButton = document.getElementById('profileButton');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        profileButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileDropdown.classList.contains('hidden') && !profileButton.contains(e.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+
+        // Mobile Menu Mobile Drawer Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Contact Form Submission Logic
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple mock trigger alert demonstrating dynamic VanillaJS control
+            const nameInput = document.getElementById('name').value;
+            alert(`ကျေးဇူးတင်ပါတယ် ${nameInput}! Your message has been routed successfully. Our team will contact you back shortly.`);
+            
+            this.reset();
+        });
+    </script>
+</body>
+</html>
