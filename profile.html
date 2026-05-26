@@ -70,10 +70,10 @@
                 <!-- Right Side Actions (Cart & Profile) -->
                 <div class="flex items-center space-x-4">
                     <!-- Cart -->
-                    <button class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors">
+                    <a href="cart.html" class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors block">
                         <i class="fa-solid fa-basket-shopping text-xl"></i>
                         <span id="cartCountBadge" class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
-                    </button>
+                    </a>
 
                     <!-- Profile Dropdown Container -->
                     <div class="relative" id="profile-container">
@@ -113,7 +113,7 @@
     </nav>
 
     <!-- HERO PROFILE HEADER SECTION -->
-    <div class="relative bg-forest-800 text-white py-16 md:py-24 overflow-hidden">
+    <div class="relative bg-forest-800 text-white py-20 md:py-32 overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="images/hero_banner.jpeg" alt="Camping campfire wilderness at night" class="w-full h-full object-cover opacity-20">
             <div class="absolute inset-0 bg-gradient-to-b from-forest-800/40 via-forest-800 to-forest-50"></div>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="space-y-2">
                     <div class="flex flex-col sm:flex-row items-center gap-3">
-                        <h1 class="text-3xl font-extrabold tracking-tight">Thet Naung Soe</h1>
+                        <h1 class="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-400">Thet Naung Soe</h1>
                         <span class="px-3 py-1 bg-amber-500 text-white font-bold text-xs uppercase tracking-wider rounded-full flex items-center gap-1">
                             <i class="fa-solid fa-mountain"></i> Pathfinder Member
                         </span>
@@ -383,21 +383,30 @@
                         </div>
 
                         <!-- Option Card 2 -->
-                        <div class="border border-gray-100 rounded-2xl p-4 opacity-65 hover:opacity-100 transition-all cursor-pointer relative bg-forest-50/50">
+                        <div class="border-2 border-forest-600 rounded-2xl p-4 hover:border-amber-600 transition-all cursor-pointer relative group bg-gradient-to-br from-white to-forest-50/40">
+                            <!-- Floating Pinnacle Badge -->
+                            <span class="absolute -top-2.5 right-4 bg-forest-700 text-white text-[9px] font-black tracking-widest uppercase px-2 py-0.5 rounded-md shadow-sm">
+                                Ultimate Tier
+                            </span>
+                            
                             <div class="flex justify-between items-start mb-2">
                                 <div>
-                                    <h4 class="text-sm font-bold text-forest-800">Wilderness Corporate Alliance</h4>
-                                    <p class="text-xs text-gray-500">Custom solutions optimized for field exploration entities.</p>
+                                    <h4 class="text-sm font-black text-forest-800 group-hover:text-amber-600 transition-colors flex items-center gap-1.5">
+                                        <i class="fa-solid fa-gem text-amber-500"></i> Alpine Vanguard Platinum
+                                    </h4>
+                                    <p class="text-xs text-gray-500">The absolute pinnacle framework for extreme explorers.</p>
                                 </div>
-                                <span class="text-xs font-bold text-forest-600 block bg-white px-2 py-1 rounded-md">Custom Quote</span>
+                                <span class="text-xs font-black text-forest-800 block bg-white border border-forest-600 px-2 py-1 rounded-md">KS 120,000 / Yr</span>
                             </div>
-                            <div class="space-y-1.5 text-xs text-gray-600 pt-2 border-t border-gray-100">
-                                <p><i class="fa-solid fa-plus text-forest-600 mr-1"></i> Wholesale structural pricing matrices for heavy inventory volumes</p>
-                                <p><i class="fa-solid fa-plus text-forest-600 mr-1"></i> Bespoke corporate branding and custom color layout adaptations</p>
+                            <div class="space-y-1.5 text-xs text-gray-600 pt-2 border-t border-forest-100">
+                                <p><i class="fa-solid fa-plus text-forest-600 mr-1"></i> <strong class="text-forest-800">25% Absolute Discount</strong> on all premium catalog gear</p>
+                                <p><i class="fa-solid fa-plus text-forest-600 mr-1"></i> Lifetime structural gear warranty replacement & alignment array</p>
+                                <p><i class="fa-solid fa-plus text-forest-600 mr-1"></i> Immediate, complimentary same-day localized drop-ship dispatching</p>
+                                <p><i class="fa-solid fa-plus text-forest-600 mr-1"></i> VIP early portal entry pass allocations to limited product drops</p>
                             </div>
-                            <a href="contact.html" class="w-full mt-4 py-2.5 bg-white hover:bg-forest-700 hover:text-white border border-gray-200 text-center block text-xs font-bold text-forest-700 rounded-xl transition-all shadow-sm">
-                                Contact Corporate Sales Desk
-                            </a>
+                            <button onclick="alert('Initiating ultimate premium network authentication gateway sequence for Alpine Vanguard Platinum...')" class="w-full mt-4 py-2.5 bg-forest-700 text-white hover:bg-amber-600 text-xs font-bold rounded-xl transition-all shadow-md">
+                                Deploy Vanguard Infrastructure
+                            </button>
                         </div>
                     </div>
 

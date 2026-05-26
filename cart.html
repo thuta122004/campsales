@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Camp Sales</title>
-    <!-- Tailwind CSS CDN -->
+    <title>My Cart - Camp Sales</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,17 +26,14 @@
             }
         }
     </script>
-    <!-- FontAwesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-forest-50 text-forest-800 font-sans antialiased">
+<body class="bg-forest-50 text-forest-800 font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- NAVIGATION BAR -->
     <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-forest-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="index.html" class="text-2xl font-bold text-forest-700 tracking-tight flex items-center gap-2">
                         <i class="fa-solid fa-tent text-amber-500"></i>
@@ -45,16 +41,13 @@
                     </a>
                 </div>
 
-                <!-- Desktop Links -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Home</a>
                     
-                    <!-- Products Dropdown Trigger -->
                     <div class="relative group">
                         <button class="text-forest-700 group-hover:text-amber-600 font-medium transition-colors flex items-center gap-1 py-2">
                             Products <i class="fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
                         </button>
-                        <!-- Dropdown Menu -->
                         <div class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
                             <a href="products.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Product Explorer</a>
                             <a href="index.html#categories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Categories</a>
@@ -63,25 +56,21 @@
                         </div>
                     </div>
 
-                    <a href="about.html" class="text-amber-600 font-medium transition-colors">About</a>
+                    <a href="about.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">About</a>
                     <a href="contact.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Contact</a>
                 </div>
 
-                <!-- Right Side Actions (Cart & Profile) -->
                 <div class="flex items-center space-x-4">
-                    <!-- Cart -->
-                    <a href="cart.html" class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors block">
+                    <button class="relative p-2 text-amber-600 transition-colors">
                         <i class="fa-solid fa-basket-shopping text-xl"></i>
                         <span id="cartCountBadge" class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
-                    </a>
+                    </button>
 
-                    <!-- Profile Dropdown Container -->
-                    <div class="relative">
+                    <div class="relative" id="profile-container">
                         <button id="profileButton" class="flex items-center gap-2 p-1 rounded-full border border-gray-200 hover:border-forest-600 transition-colors focus:outline-none">
                             <img src="images/user_profile.jpg" alt="User Profile" class="h-8 w-8 rounded-full object-cover">
                         </button>
                         
-                        <!-- Profile Menu Dropdown -->
                         <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden z-50">
                             <div class="px-4 py-2 border-b border-gray-100">
                                 <p class="text-xs text-gray-400">Signed in as</p>
@@ -94,7 +83,6 @@
                         </div>
                     </div>
 
-                    <!-- Mobile Menu Button -->
                     <button id="mobileMenuBtn" class="md:hidden p-2 text-forest-700 hover:text-amber-600">
                         <i class="fa-solid fa-bars text-xl"></i>
                     </button>
@@ -102,7 +90,6 @@
             </div>
         </div>
 
-        <!-- Mobile Drawer Link list -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-1">
             <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Home</a>
             <a href="index.html#categories" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Categories</a>
@@ -112,168 +99,89 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="relative bg-forest-800 text-white py-20 md:py-32 overflow-hidden">
+    <div class="relative bg-forest-800 text-white py-20 md:py-32 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="images/mist_morning_mountain_forest.jpeg" alt="Mist morning mountain forest" class="w-full h-full object-cover opacity-25">
+            <img src="images/hero_banner.jpeg" alt="Deep forest sunlight path" class="w-full h-full object-cover opacity-25">
             <div class="absolute inset-0 bg-gradient-to-b from-forest-800/50 via-forest-800 to-forest-50"></div>
         </div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
-            <span class="text-amber-500 font-bold uppercase tracking-wider text-sm block mb-3">Our Story</span>
+            <span class="text-amber-500 font-bold uppercase tracking-wider text-sm block mb-3">Base Camp Logistics</span>
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">
-                Rooted in the <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-400">Wilderness</span>
+                Your Expedition <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-400">Basket</span>
             </h1>
             <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                Empowering campers, mountaineers, and weekend adventurers across Myanmar with reliably structured, heavy-duty gear built to face the elements.
+                Review your selected field gear options, modify items parameters, and configure your tracking lines prior to securing your delivery route.
             </p>
         </div>
-    </header>
+    </div>
 
-    <!-- BACKGROUND / COMPANY HISTORY SECTION -->
-    <section class="py-16 md:py-24 bg-forest-50">
+    <div class="py-16 md:py-24 bg-forest-50 text-forest-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <h2 class="text-3xl font-bold text-forest-700 tracking-tight sm:text-4xl">How Camp Sales Began</h2>
-                    <p class="text-gray-600 leading-relaxed">
-                        Founded by a small group of passionate local mountaineers, Camp Sales emerged from a simple realization: finding premium, water-resistant, and high-durability gear fine-tuned for Myanmar's unique tropical monsoon climate shouldn't be an adventure in itself.
-                    </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        What started as a modest inventory supply workshop in Yangon has scaled organically into a trusted nationwide direct-to-consumer distributor platform. We collaborate with international gear manufacturers to construct specialized solutions that endure rugged forest pathways, highlands, and coastal rain corridors.
-                    </p>
-                    <div class="flex items-center gap-6 pt-4">
-                        <div>
-                            <span class="block text-3xl font-black text-forest-700">15K+</span>
-                            <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Happy Campers</span>
-                        </div>
-                        <div class="border-l border-gray-300 h-10"></div>
-                        <div>
-                            <span class="block text-3xl font-black text-forest-700">99.99%</span>
-                            <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Field Tested</span>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                
+                <div class="lg:col-span-7 space-y-4" id="cartItemsWrapper">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center py-12">
+                        <div class="text-center">
+                            <i class="fa-solid fa-circle-notch animate-spin text-3xl text-forest-600 mb-3"></i>
+                            <p class="text-sm text-gray-500">Unpacking cart data nodes...</p>
                         </div>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-forest-600 to-transparent rounded-3xl opacity-10 transform translate-x-4 translate-y-4"></div>
-                    <img src="images/camping_setup_outdoor_group.jpeg" alt="Camping setup outdoor group" class="w-full h-96 object-cover rounded-3xl shadow-md relative z-10">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- MISSION & VISION SECTION -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                <!-- Mission -->
-                <div class="bg-forest-50 p-8 rounded-3xl border border-forest-100 flex flex-col justify-between transform transition-all hover:-translate-y-1 hover:shadow-md">
-                    <div>
-                        <div class="w-14 h-14 bg-forest-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
-                            <i class="fa-solid fa-compass"></i>
+                <div class="lg:col-span-5 bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100 space-y-6" id="summaryCardBlock">
+                    <h2 class="text-2xl font-bold text-forest-700 mb-2">Order Pricing Matrix</h2>
+                    <p class="text-sm text-gray-500 mb-4">Review complete custom tax estimates and localized logistical configurations below.</p>
+                    
+                    <div class="space-y-4 text-sm pt-2">
+                        <div class="flex justify-between text-gray-500">
+                            <span>Cart Subtotal</span>
+                            <span id="subtotalValue" class="font-semibold text-forest-800">00.00 MMK</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-forest-700 mb-4">Our Mission</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            To lower the accessibility barrier for high-grade outdoor survival utilities in Myanmar, offering transparent, competitive pricing models structured in local currency alongside verified local field feedback.
-                        </p>
-                    </div>
-                    <span class="text-xs font-bold text-forest-600/30 uppercase tracking-widest mt-8">Guidance</span>
-                </div>
-
-                <!-- Vision -->
-                <div class="bg-forest-50 p-8 rounded-3xl border border-forest-100 flex flex-col justify-between transform transition-all hover:-translate-y-1 hover:shadow-md">
-                    <div>
-                        <div class="w-14 h-14 bg-amber-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
-                            <i class="fa-solid fa-mountain-sun"></i>
+                        <div class="flex justify-between text-gray-500">
+                            <span>Estimated Route Delivery</span>
+                            <span id="shippingValue" class="font-semibold text-emerald-600">Free</span>
                         </div>
-                        <h3 class="text-2xl font-bold text-forest-700 mb-4">Our Vision</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            To cultivate the premier active wilderness community platform across the region, championing low-impact eco-tourism standards and equipping explorers with items that maximize environmental safety.
-                        </p>
+                        <div class="flex justify-between text-gray-500 items-center">
+                            <span>Commercial Tax (5%)</span>
+                            <span id="taxValue" class="font-semibold text-forest-800">00.00 MMK</span>
+                        </div>
+                        
+                        <hr class="border-gray-100 my-2">
+                        
+                        <div class="flex justify-between text-base font-bold text-forest-700 pt-2">
+                            <span>Total Invoice Amount</span>
+                            <span id="totalValue" class="text-lg text-amber-600">00.00 MMK</span>
+                        </div>
                     </div>
-                    <span class="text-xs font-bold text-amber-600/30 uppercase tracking-widest mt-8">Horizon</span>
+
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Apply Promo Code</label>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="CAMPS2026" class="w-full px-4 py-2.5 bg-forest-50 border border-gray-200 text-xs rounded-xl text-forest-800 focus:ring-2 focus:ring-amber-500 focus:border-transparent focus:outline-none transition-all" />
+                            <button class="bg-forest-100 hover:bg-forest-600 hover:text-white text-forest-700 text-xs font-bold px-4 py-2.5 rounded-xl transition-all">Apply</button>
+                        </div>
+                    </div>
+
+                    <button onclick="processSecureCheckoutOrder()" class="w-full py-4 bg-forest-600 hover:bg-forest-700 text-white font-bold rounded-xl shadow-lg shadow-amber-500/10 transition-all transform hover:-translate-y-0.5 inline-flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-xs"></i>
+                        <span>Proceed to Secure Checkout</span>
+                    </button>
+
+                    <div class="text-center pt-2">
+                        <a href="products.html" class="text-xs font-semibold text-forest-600 hover:text-amber-600 inline-flex items-center gap-1.5 transition-colors">
+                            <i class="fa-solid fa-arrow-left"></i> Continue Scouting Gear
+                        </a>
+                    </div>
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
 
-    <!-- CORE VALUE PROPOSITIONS -->
-    <section class="py-16 md:py-24 bg-forest-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-forest-700 mb-12">Why Explorers Trust Us</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="p-6">
-                    <i class="fa-solid fa-shield-halved text-3xl text-amber-500 mb-4"></i>
-                    <h4 class="text-lg font-bold text-forest-800 mb-2">Monsoon Waterproof Certification</h4>
-                    <p class="text-sm text-gray-600">All fabric arrays pass verified high-pressure water column testing thresholds prior to listing.</p>
-                </div>
-                <div class="p-6">
-                    <i class="fa-solid fa-truck-ramp-box text-3xl text-amber-500 mb-4"></i>
-                    <h4 class="text-lg font-bold text-forest-800 mb-2">Nationwide Strategic Logistics</h4>
-                    <p class="text-sm text-gray-600">Reliable delivery configurations deployed seamlessly to any township or base hub region.</p>
-                </div>
-                <div class="p-6">
-                    <i class="fa-solid fa-handshake-angle text-3xl text-amber-500 mb-4"></i>
-                    <h4 class="text-lg font-bold text-forest-800 mb-2">Comprehensive Local Warranty</h4>
-                    <p class="text-sm text-gray-600">Direct equipment damage backup and support channels managed locally inside Yangon hubs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- THE TEAM BEHIND THE PLATFORM -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-amber-600 font-bold tracking-wider uppercase text-sm block mb-2">Our Crew</span>
-                <h2 class="text-3xl font-bold text-forest-700 tracking-tight sm:text-4xl">Meet the Trailblazers</h2>
-                <p class="text-gray-600 mt-2">The outdoor strategists making sure your logistics stay uncompromised.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Member 1 -->
-                <div class="bg-forest-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm text-center flex flex-col justify-between">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="images/ko_nay_lin_htet.jpeg" alt="Ko Nay Lin Htet" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-forest-800 mb-1">Ko Nay Lin Htet</h3>
-                        <p class="text-xs text-amber-600 font-semibold uppercase tracking-wider mb-3">Founder & Chief Explorer</p>
-                        <p class="text-sm text-gray-600">Veteran trekker with over a decade of high-altitude mapping across Shan highlands.</p>
-                    </div>
-                </div>
-
-                <!-- Member 2 -->
-                <div class="bg-forest-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm text-center flex flex-col justify-between">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="images/ma_khin_thiri.jpeg" alt="Ma Khin Thiri" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-forest-800 mb-1">Ma Khin Thiri</h3>
-                        <p class="text-xs text-amber-600 font-semibold uppercase tracking-wider mb-3">Head of Product Procurement</p>
-                        <p class="text-sm text-gray-600">Ensures all technical textiles match ultra-durable ripstop configuration parameters.</p>
-                    </div>
-                </div>
-
-                <!-- Member 3 -->
-                <div class="bg-forest-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm text-center flex flex-col justify-between">
-                    <div class="h-80 overflow-hidden relative">
-                        <img src="images/ko_sai_tun_lu.jpeg" alt="Ko Sai Tun Lu" class="w-full h-full object-cover object-top">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-forest-800 mb-1">Ko Sai Tun Lu</h3>
-                        <p class="text-xs text-amber-600 font-semibold uppercase tracking-wider mb-3">Logistics Director</p>
-                        <p class="text-sm text-gray-600">Coordinates reliable shipping corridors to ensure fast structural delivery to remote bases.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODERN FOOTER -->
-    <footer class="bg-forest-800 text-gray-400 pt-20 pb-10 border-t border-forest-700">
+    <footer class="bg-forest-800 text-gray-400 pt-20 pb-10 border-t border-forest-700 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <!-- Brand Column -->
             <div class="md:col-span-1">
                 <a href="#" class="text-2xl font-bold text-white tracking-tight flex items-center gap-2 mb-6">
                     <i class="fa-solid fa-tent text-amber-500"></i>
@@ -287,7 +195,6 @@
                 </div>
             </div>
 
-            <!-- Links 1 -->
             <div>
                 <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Quick Navigation</h3>
                 <ul class="space-y-4 text-sm">
@@ -298,7 +205,6 @@
                 </ul>
             </div>
 
-            <!-- Links 2 -->
             <div>
                 <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Support & Policy</h3>
                 <ul class="space-y-4 text-sm">
@@ -309,7 +215,6 @@
                 </ul>
             </div>
 
-            <!-- Contact/About Section Link -->
             <div id="contact">
                 <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Get in Touch</h3>
                 <ul class="space-y-4 text-sm">
@@ -329,14 +234,12 @@
             </div>
         </div>
 
-        <!-- Footer Bottom Bar -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-forest-700/60 text-center md:flex md:items-center md:justify-between text-xs">
-            <p>&copy; 2026 Camp Sales Co., Ltd. All rights reserved.</p>
+            <p>© 2026 Camp Sales Co., Ltd. All rights reserved.</p>
             <p class="mt-4 md:mt-0">Designed beautifully for the wilderness.</p>
         </div>
     </footer>
 
-    <!-- VANILLA JAVASCRIPT (INTERACTION HANDLERS) -->
     <script>
         // Profile Dropdown Toggle Logic
         const profileButton = document.getElementById('profileButton');
@@ -363,17 +266,144 @@
         });
 
         const cartCountBadge = document.getElementById('cartCountBadge');
+        const cartItemsWrapper = document.getElementById('cartItemsWrapper');
+
+        // Target Global Metric Displays
+        const subtotalValueEl = document.getElementById('subtotalValue');
+        const taxValueEl = document.getElementById('taxValue');
+        const totalValueEl = document.getElementById('totalValue');
 
         document.addEventListener("DOMContentLoaded", () => {
-            synchronizeCartCounterUI();
+            renderActiveCartLayout();
         });
 
-        // RE-SYNC CART LOCAL COUNTER VALUE
-        function synchronizeCartCounterUI() {
+        // PRIMARY CART RENDERING PIPELINE
+        function renderActiveCartLayout() {
             let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            
+            // Sync Navigation Icon Counter Badge
             let aggregatedTotal = activeCartCollection.reduce((acc, item) => acc + item.quantity, 0);
             cartCountBadge.textContent = aggregatedTotal;
+
+            if (activeCartCollection.length === 0) {
+                renderEmptyStatePlaceholder();
+                return;
+            }
+
+            cartItemsWrapper.innerHTML = '';
+            let currentCalculatedSubtotal = 0;
+
+            activeCartCollection.forEach((item, index) => {
+                const name = item.name;
+                const price = parseFloat(item.price) || 0;
+                
+                let image = item.img;
+                
+                const cs = item.cs || `CS-0${index + 1000}`;
+                
+                const itemCalculatedRowTotal = price * item.quantity;
+                currentCalculatedSubtotal += itemCalculatedRowTotal;
+
+                // Create Card element mapping custom visual layouts
+                const productRowNode = document.createElement('div');
+                productRowNode.className = "bg-white p-4 sm:p-5 rounded-2xl border border-forest-100 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all hover:shadow-md relative group";
+                
+                productRowNode.innerHTML = `
+                    <div class="flex items-center gap-4 w-full sm:w-auto">
+                        <img src="${image}" alt="${name}" class="w-20 h-20 object-cover rounded-xl border border-gray-100 flex-shrink-0 bg-forest-50"">
+                        <div class="space-y-1">
+                            <h4 class="text-sm font-bold text-forest-700">${name}</h4>
+                            <p class="text-xs text-gray-400 font-medium">${cs}</p>
+                            <p class="text-xs font-semibold text-amber-600 sm:hidden">${price.toLocaleString()} MMK</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-0 pt-3 sm:pt-0 border-gray-100">
+                        <div class="flex items-center border border-gray-200 rounded-xl bg-forest-50/50">
+                            <button onclick="modifyItemQuantity(${index}, -1)" class="px-3 py-1.5 text-gray-500 hover:text-amber-600 transition-colors text-xs"><i class="fa-solid fa-minus"></i></button>
+                            <span class="px-2 text-xs font-bold text-forest-700 w-6 text-center select-none">${item.quantity}</span>
+                            <button onclick="modifyItemQuantity(${index}, 1)" class="px-3 py-1.5 text-gray-500 hover:text-amber-600 transition-colors text-xs"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+
+                        <div class="text-right min-w-[100px]">
+                            <p class="text-sm font-bold text-forest-700">${itemCalculatedRowTotal.toLocaleString()} MMK</p>
+                            <p class="text-[10px] text-gray-400 hidden sm:block">${price.toLocaleString()} MMK each</p>
+                        </div>
+
+                        <button onclick="purgeCartRowNode(${index})" class="text-gray-400 hover:text-red-500 transition-colors p-1" title="Remove Item">
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsWrapper.appendChild(productRowNode);
+            });
+
+            calculateInvoiceTotals(currentCalculatedSubtotal);
         }
+
+        // MODIFY QUANTITY MECHANIC
+        window.modifyItemQuantity = function(targetIndex, operationalDelta) {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            if(!activeCartCollection[targetIndex]) return;
+
+            activeCartCollection[targetIndex].quantity += operationalDelta;
+
+            if (activeCartCollection[targetIndex].quantity <= 0) {
+                activeCartCollection.splice(targetIndex, 1);
+            }
+
+            localStorage.setItem('camp_sales_cart', JSON.stringify(activeCartCollection));
+            renderActiveCartLayout();
+        };
+
+        // PURGE ITEM ROW NODE
+        window.purgeCartRowNode = function(targetIndex) {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            activeCartCollection.splice(targetIndex, 1);
+            localStorage.setItem('camp_sales_cart', JSON.stringify(activeCartCollection));
+            renderActiveCartLayout();
+        };
+
+        // EXHAUSTIVE SUMMARY RE-CALCULATION LAYER
+        function calculateInvoiceTotals(subtotal) {
+            const calculatedTax = subtotal * 0.05;
+            const absoluteTotal = subtotal + calculatedTax;
+
+            subtotalValueEl.textContent = `${subtotal.toLocaleString()} MMK`;
+            taxValueEl.textContent = `${calculatedTax.toLocaleString()} MMK`;
+            totalValueEl.textContent = `${absoluteTotal.toLocaleString()} MMK`;
+        }
+
+        // EMPTY PLATFORM BLANK STATE INJECTION
+        function renderEmptyStatePlaceholder() {
+            cartItemsWrapper.innerHTML = `
+                <div class="bg-white p-8 sm:p-12 rounded-3xl border border-forest-100 shadow-sm text-center space-y-4 w-full">
+                    <div class="w-16 h-16 bg-forest-100 rounded-full flex items-center justify-center mx-auto text-forest-600 text-2xl">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-forest-800">Your Basket is Completely Unpacked</h3>
+                        <p class="text-xs text-gray-400 mt-1 max-w-sm mx-auto">You haven't provisions for your camp tracking array yet. Explore our product matrix lines to setup your loadout.</p>
+                    </div>
+                    <div class="pt-2">
+                        <a href="products.html" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-6 py-3 rounded-xl transition-all shadow-sm">
+                            <i class="fa-solid fa-compass"></i> Initialize Product Explorer
+                        </a>
+                    </div>
+                </div>
+            `;
+            calculateInvoiceTotals(0);
+        }
+
+        // GATEWAY TRANSITION SIMULATION MOCKUP
+        window.processSecureCheckoutOrder = function() {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            if(activeCartCollection.length === 0) {
+                alert("Your cart matrix is vacant! Please add products to your deployment profile before inspecting checkouts.");
+                return;
+            }
+            alert("Synchronizing checkout routing arrays... Redirecting transaction securely to Central Yangon CampSales Core Gateway Infrastructure Configuration Network.");
+        };
     </script>
 </body>
 </html>
