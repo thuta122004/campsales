@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Sales - Explore the Wild</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            50: '#f2f7f4',
+                            100: '#e2eee7',
+                            600: '#2d6a4f',
+                            700: '#1b4332',
+                            800: '#081c15',
+                        },
+                        amber: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-forest-50 text-forest-800 font-sans antialiased">
+
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-forest-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-forest-700 tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-tent text-amber-500"></i>
+                        <span>Camp<span class="text-forest-600">Sales</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Home</a>
+                    
+                    <div class="relative group">
+                        <button class="text-forest-700 group-hover:text-amber-600 font-medium transition-colors flex items-center gap-1 py-2">
+                            Products <i class="fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                            <a href="products.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Product Explorer</a>
+                            <a href="index.html#categories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Categories</a>
+                            <a href="index.html#promotions" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Promotions</a>
+                            <a href="index.html#reviews" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Reviews</a>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <a href="cart.html" class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors block">
+                        <i class="fa-solid fa-basket-shopping text-xl"></i>
+                        <span id="cartCountBadge" class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
+                    </a>
+
+                    <div class="relative" id="profile-container">
+                        <button id="profileButton" class="flex items-center gap-2 p-1 rounded-full border border-gray-200 hover:border-forest-600 transition-colors focus:outline-none">
+                            <img src="images/user_profile.jpg" alt="User Profile" class="h-8 w-8 rounded-full object-cover">
+                        </button>
+                        
+                        <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden z-50">
+                            <div class="px-4 py-2 border-b border-gray-100">
+                                <p class="text-xs text-gray-400">Signed in as</p>
+                                <p class="text-sm font-semibold text-forest-800 truncate">Thet Naung Soe</p>
+                            </div>
+                            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-regular fa-user mr-2 text-gray-400"></i> My Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-solid fa-gear mr-2 text-gray-400"></i> Settings</a>
+                            <hr class="my-1 border-gray-100">
+                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"><i class="fa-solid fa-arrow-right-from-bracket mr-2 text-red-400"></i> Logout</a>
+                        </div>
+                    </div>
+
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-forest-700 hover:text-amber-600">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-1">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Home</a>
+            <a href="products.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Products</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">About</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            
+            <div class="lg:col-span-6 space-y-4">
+                <div class="bg-white rounded-3xl p-4 border border-gray-100 shadow-sm overflow-hidden aspect-[4/3] flex items-center justify-center relative group">
+                    <img id="mainProductView" src="images/monsoon_proof_dome_tent.png" alt="Monsoon Proof Dome Tent View Alpha" class="w-full h-full object-cover rounded-2xl transition-transform duration-300 group-hover:scale-102">
+                    <span class="absolute top-6 left-6 px-3 py-1 bg-forest-800 text-amber-500 rounded-full text-xs font-black uppercase tracking-wider shadow-md">
+                        Top Rated Gear
+                    </span>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-3">
+                    <button onclick="updateActivePreview(this, 'images/monsoon_proof_dome_tent.png')" class="thumbnail-btn aspect-square rounded-xl bg-white border-2 border-amber-500 p-1 overflow-hidden shadow-sm transition-all focus:outline-none">
+                        <img src="images/monsoon_proof_dome_tent.png" class="w-full h-full object-cover rounded-lg" alt="Angle Alpha">
+                    </button>
+                    <button onclick="updateActivePreview(this, 'images/monsoon_proof_dome_tent_2.jpg')" class="thumbnail-btn aspect-square rounded-xl bg-white border-2 border-transparent p-1 overflow-hidden shadow-sm transition-all hover:border-gray-300 focus:outline-none">
+                        <img src="images/monsoon_proof_dome_tent_2.jpg" class="w-full h-full object-cover rounded-lg" alt="Angle Beta">
+                    </button>
+                    <button onclick="updateActivePreview(this, 'images/monsoon_proof_dome_tent_3.jpg')" class="thumbnail-btn aspect-square rounded-xl bg-white border-2 border-transparent p-1 overflow-hidden shadow-sm transition-all hover:border-gray-300 focus:outline-none">
+                        <img src="images/monsoon_proof_dome_tent_3.jpg" class="w-full h-full object-cover rounded-lg" alt="Angle Gamma">
+                    </button>
+                    <button onclick="updateActivePreview(this, 'images/monsoon_proof_dome_tent_4.jpg')" class="thumbnail-btn aspect-square rounded-xl bg-white border-2 border-transparent p-1 overflow-hidden shadow-sm transition-all hover:border-gray-300 focus:outline-none">
+                        <img src="images/monsoon_proof_dome_tent_4.jpg" class="w-full h-full object-cover rounded-lg" alt="Angle Delta">
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-6 md:space-y-8 bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-sm">
+                
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between gap-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-forest-50 px-3 py-1 rounded-full">
+                            Shelters & Tents
+                        </span>
+                        <div class="flex items-center gap-1.5 text-xs font-black text-forest-700">
+                            <i class="fa-solid fa-star text-amber-500"></i>
+                            <span>4.8</span>
+                            <span class="text-gray-400 font-normal">(42 Verified Reviews)</span>
+                        </div>
+                    </div>
+                    <h1 class="text-2xl md:text-3xl font-black text-forest-800 tracking-tight leading-tight">
+                        Monsoon Proof Dome Tent
+                    </h1>
+                    <div class="inline-flex items-baseline gap-2">
+                        <span class="text-xs font-bold text-gray-400 uppercase">Outpost Price:</span>
+                        <span class="text-2xl font-black text-forest-700">KS 185,000</span>
+                    </div>
+                </div>
+
+                <p class="text-sm text-gray-600 leading-relaxed border-t border-b border-gray-100 py-4">
+                    Engineered with premium dual-layer ripstop polyester and sealed water-tight seam boundaries, this professional dome tent is specifically optimized to protect your team against severe tropical rain spells and sudden climate changes across mountain corridors.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 text-xs">
+                    <div class="flex items-center gap-3 bg-forest-50/50 p-3 rounded-xl border border-forest-100/40">
+                        <i class="fa-solid fa-users text-amber-500 text-sm"></i>
+                        <div>
+                            <span class="text-gray-400 block">Capacity</span>
+                            <span class="font-bold text-forest-800">3-4 Persons</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-forest-50/50 p-3 rounded-xl border border-forest-100/40">
+                        <i class="fa-solid fa-cloud-showers-heavy text-amber-500 text-sm"></i>
+                        <div>
+                            <span class="text-gray-400 block">Waterproofing</span>
+                            <span class="font-bold text-forest-800">PU 3000mm Rating</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-forest-50/50 p-3 rounded-xl border border-forest-100/40">
+                        <i class="fa-solid fa-weight-hanging text-amber-500 text-sm"></i>
+                        <div>
+                            <span class="text-gray-400 block">Net Weight</span>
+                            <span class="font-bold text-forest-800">3.8 kg (Ultralight)</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-forest-50/50 p-3 rounded-xl border border-forest-100/40">
+                        <i class="fa-solid fa-shield-halved text-amber-500 text-sm"></i>
+                        <div>
+                            <span class="text-gray-400 block">Pole Frame</span>
+                            <span class="font-bold text-forest-800">Anodized Aluminum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-4 border-t border-gray-100">
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                        
+                        <div class="flex items-center justify-between border border-gray-200 bg-forest-50/30 rounded-xl p-1.5 sm:w-32 shrink-0">
+                            <button onclick="decrementStepperQty()" class="w-8 h-8 rounded-lg bg-white shadow-sm border border-gray-100 flex items-center justify-center text-forest-700 font-bold hover:bg-forest-50 transition-colors focus:outline-none">
+                                <i class="fa-solid fa-minus text-xs"></i>
+                            </button>
+                            <span id="stepperQuantityDisplay" class="font-black text-sm text-forest-800 px-3">1</span>
+                            <button onclick="incrementStepperQty()" class="w-8 h-8 rounded-lg bg-white shadow-sm border border-gray-100 flex items-center justify-center text-forest-700 font-bold hover:bg-forest-50 transition-colors focus:outline-none">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+
+                        <button onclick="executeDetailsCartPipeline()" class="flex-1 px-6 py-3.5 bg-forest-600 hover:bg-forest-700 text-white font-bold text-sm rounded-xl transition-all shadow-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus text-base"></i>
+                            <span>Add To Expedition Tray</span>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-center sm:justify-start gap-6 text-[11px] text-gray-400 pt-2">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-emerald-600"></i> Myanmar Wide Delivery</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-rotate text-emerald-600"></i> 7-Day Field Exchange</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mt-16 bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="border-b border-gray-100 flex bg-forest-50/40">
+                <button onclick="switchTab(this, 'tab-description')" class="tab-trigger px-6 py-4 text-xs font-black uppercase tracking-wider text-amber-600 border-b-2 border-amber-500 transition-all focus:outline-none">
+                    Field Description
+                </button>
+                <button onclick="switchTab(this, 'tab-specifications')" class="tab-trigger px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500 border-b-2 border-transparent hover:text-forest-700 transition-all focus:outline-none">
+                    Technical Specifications
+                </button>
+            </div>
+            
+            <div class="p-6 md:p-8 text-sm leading-relaxed text-gray-600">
+                <div id="tab-description" class="tab-content space-y-4">
+                    <h3 class="text-base font-bold text-forest-800">Designed For Tactical Environmental Resistance</h3>
+                    <p>The Monsoon Proof Dome Tent is structurally balanced using interconnected cross-over support poles that evenly distribute stress from external forces. This architecture prevents standard wall collapses under continuous high winds or heavy rainfall.</p>
+                    <p>Inside, the layout features mesh roof windows that allow optimal airflow, preventing condensation buildup while keeping out insects. A full-coverage matching rainfly canopy extends down the sides to create an extra front storage area for dirty boots and backpacks.</p>
+                </div>
+                
+                <div id="tab-specifications" class="tab-content space-y-3 hidden">
+                    <table class="w-full border-collapse text-xs">
+                        <tbody>
+                            <tr class="border-b border-gray-100"><td class="py-2.5 font-bold text-forest-800 w-1/3">Flysheet Material</td><td class="py-2.5 text-gray-600">190T Ripstop Polyester PU3000mm Coating Matrix</td></tr>
+                            <tr class="border-b border-gray-100"><td class="py-2.5 font-bold text-forest-800">Inner Ground Mesh</td><td class="py-2.5 text-gray-600">B3 High-Density Micro-Ventilation Mesh Weave</td></tr>
+                            <tr class="border-b border-gray-100"><td class="py-2.5 font-bold text-forest-800">Floor Layout Structure</td><td class="py-2.5 text-gray-600">210D Oxford Fabric PU4000mm Fully Sealed Seams</td></tr>
+                            <tr class="border-b border-gray-100"><td class="py-2.5 font-bold text-forest-800">Internal Storage Dimensions</td><td class="py-2.5 text-gray-600">210cm Length x 210cm Width x 135cm Peak Height</td></tr>
+                            <tr><td class="py-2.5 font-bold text-forest-800">Package Accessories</td><td class="py-2.5 text-gray-600">12 Aluminum Ground Pegs, 4 Windbreak Tie Ropes, 1 Carrier Pack Bag</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-forest-800 text-gray-400 pt-20 pb-10 border-t border-forest-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-1">
+                <a href="#" class="text-2xl font-bold text-white tracking-tight flex items-center gap-2 mb-6">
+                    <i class="fa-solid fa-tent text-amber-500"></i>
+                    <span>Camp<span class="text-emerald-400">Sales</span></span>
+                </a>
+                <p class="text-sm leading-relaxed mb-6">Providing high-grade, reliable camping and hiking gear to outdoor enthusiasts across Myanmar.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Quick Navigation</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home Base</a></li>
+                    <li><a href="index.html#categories" class="hover:text-white transition-colors">Gear Categories</a></li>
+                    <li><a href="index.html#promotions" class="hover:text-white transition-colors">Special Offers</a></li>
+                    <li><a href="index.html#reviews" class="hover:text-white transition-colors">Customer Stories</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Support & Policy</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">Sizing Guide</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Warranty Info</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div id="contact">
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Get in Touch</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-amber-500"></i>
+                        <span>No. 123, Pyay Road, Kamayut Township, Yangon, Myanmar</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-amber-500"></i>
+                        <span>+95 9 1234 56789</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-amber-500"></i>
+                        <span>info@campsales.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-forest-700/60 text-center md:flex md:items-center md:justify-between text-xs">
+            <p>&copy; 2026 Camp Sales Co., Ltd. All rights reserved.</p>
+            <p class="mt-4 md:mt-0">Designed beautifully for the wilderness.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Profile Menu Dropdown Layout Toggle Logic
+        const profileButton = document.getElementById('profileButton');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        profileButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!profileDropdown.classList.contains('hidden') && !profileButton.contains(e.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // SAMPLE PRODUCT PROFILE METADATA BLUEPRINT
+        const targetProductObject = {
+            id: 1,
+            name: "Monsoon Proof Dome Tent",
+            category: "tents",
+            price: 185000,
+            img: "images/monsoon_proof_dome_tent.jpg"
+        };
+
+        // QUANTITY COUNTER STEPPER OPERATIONS
+        let internalQuantityState = 1;
+        const stepperQuantityDisplay = document.getElementById('stepperQuantityDisplay');
+        const cartCountBadge = document.getElementById('cartCountBadge');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            synchronizeCartCounterUI();
+        });
+
+        function incrementStepperQty() {
+            internalQuantityState++;
+            stepperQuantityDisplay.textContent = internalQuantityState;
+        }
+
+        function decrementStepperQty() {
+            if (internalQuantityState > 1) {
+                internalQuantityState--;
+                stepperQuantityDisplay.textContent = internalQuantityState;
+            }
+        }
+
+        // RE-SYNC NAVIGATION OVERVIEW COUNT
+        function synchronizeCartCounterUI() {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            let aggregatedTotal = activeCartCollection.reduce((acc, item) => acc + item.quantity, 0);
+            cartCountBadge.textContent = aggregatedTotal;
+        }
+
+        // CANVAS CONTAINER PREVIEW SWITCHER
+        function updateActivePreview(buttonElement, targetImageUrl) {
+            document.getElementById('mainProductView').src = targetImageUrl;
+            document.querySelectorAll('.thumbnail-btn').forEach(el => {
+                el.className = "thumbnail-btn aspect-square rounded-xl bg-white border-2 border-transparent p-1 overflow-hidden shadow-sm transition-all hover:border-gray-300 focus:outline-none";
+            });
+            buttonElement.className = "thumbnail-btn aspect-square rounded-xl bg-white border-2 border-amber-500 p-1 overflow-hidden shadow-sm transition-all focus:outline-none";
+        }
+
+        // TABS DATA TOGGLER SWITCH
+        function switchTab(clickedTriggerElement, targetTabContentId) {
+            document.querySelectorAll('.tab-trigger').forEach(el => {
+                el.className = "tab-trigger px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500 border-b-2 border-transparent hover:text-forest-700 transition-all focus:outline-none";
+            });
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+
+            clickedTriggerElement.className = "tab-trigger px-6 py-4 text-xs font-black uppercase tracking-wider text-amber-600 border-b-2 border-amber-500 transition-all focus:outline-none";
+            document.getElementById(targetTabContentId).classList.remove('hidden');
+        }
+
+        // WRITE OPERATION: INJECT ITEMS DIRECTLY INTO CHECKOUT ARRAY LAYER
+        function executeDetailsCartPipeline() {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            const matchedExistingItemIndex = activeCartCollection.findIndex(cartItem => cartItem.id === targetProductObject.id);
+
+            if (matchedExistingItemIndex > -1) {
+                activeCartCollection[matchedExistingItemIndex].quantity += internalQuantityState;
+            } else {
+                activeCartCollection.push({
+                    id: targetProductObject.id,
+                    name: targetProductObject.name,
+                    price: targetProductObject.price,
+                    category: targetProductObject.category,
+                    img: targetProductObject.img,
+                    quantity: internalQuantityState
+                });
+            }
+
+            localStorage.setItem('camp_sales_cart', JSON.stringify(activeCartCollection));
+            synchronizeCartCounterUI();
+            
+            alert(`${internalQuantityState}x "${targetProductObject.name}" added to your tray.`);
+            internalQuantityState = 1;
+            stepperQuantityDisplay.textContent = internalQuantityState;
+        }
+    </script>
+</body>
+</html>
