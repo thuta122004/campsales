@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Base - Camp Sales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            50: '#f2f7f4',
+                            100: '#e2eee7',
+                            600: '#2d6a4f',
+                            700: '#1b4332',
+                            800: '#081c15',
+                        },
+                        amber: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-forest-50 text-forest-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-forest-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-forest-700 tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-tent text-amber-500"></i>
+                        <span>Camp<span class="text-forest-600">Sales</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Home</a>
+                    
+                    <div class="relative group">
+                        <button class="text-forest-700 group-hover:text-amber-600 font-medium transition-colors flex items-center gap-1 py-2">
+                            Products <i class="fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                            <a href="products.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Product Explorer</a>
+                            <a href="index.html#categories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Categories</a>
+                            <a href="index.html#promotions" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Promotions</a>
+                            <a href="index.html#reviews" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Reviews</a>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <a href="cart.html" class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors block">
+                        <i class="fa-solid fa-basket-shopping text-xl"></i>
+                        <span id="cartCountBadge" class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
+                    </a>
+
+                    <div class="relative" id="profile-container">
+                        <button id="profileButton" class="flex items-center gap-2 p-1 rounded-full border border-gray-200 hover:border-forest-600 transition-colors focus:outline-none">
+                            <img src="images/user_profile.jpg" alt="User Profile" class="h-8 w-8 rounded-full object-cover">
+                        </button>
+                        
+                        <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden z-50">
+                            <div class="px-4 py-2 border-b border-gray-100">
+                                <p class="text-xs text-gray-400">Signed in as</p>
+                                <p class="text-sm font-semibold text-forest-800 truncate">Thet Naung Soe</p>
+                            </div>
+                            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-regular fa-user mr-2 text-gray-400"></i> My Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-solid fa-gear mr-2 text-gray-400"></i> Settings</a>
+                            <hr class="my-1 border-gray-100">
+                            <a href="auth.html" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"><i class="fa-solid fa-arrow-right-from-bracket mr-2 text-red-400"></i> Logout</a>
+                        </div>
+                    </div>
+
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-forest-700 hover:text-amber-600">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-1">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Home</a>
+            <a href="index.html#categories" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Categories</a>
+            <a href="index.html#promotions" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Promotions</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">About</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Contact</a>
+        </div>
+    </nav>
+
+    <div class="relative bg-forest-800 text-white py-20 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/deep_forest_sunlight_path.jpeg" alt="Deep forest path background" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-forest-800/60 via-forest-800 to-forest-50"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
+            <span class="text-amber-500 font-bold uppercase tracking-wider text-sm block mb-2">Basecamp Reference Desk</span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+                Support & <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-400">Guidelines</span>
+            </h1>
+            <p class="text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Review setup profiles, size layouts, structural warranty guidelines, and logistics data nodes carefully before your next expedition dispatch.
+            </p>
+        </div>
+    </div>
+
+    <div class="py-12 md:py-20 bg-forest-50 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                
+                <div class="lg:col-span-3 space-y-2 sticky top-24 z-30">
+                    <button onclick="switchInformationTab('sizing-guide')" id="btn-sizing-guide" class="info-tab-btn w-full px-5 py-4 rounded-xl text-left font-bold text-sm transition-all flex items-center justify-between shadow-sm bg-white border border-forest-100 text-forest-700 hover:bg-forest-100">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined text-amber-500"></i> Sizing Guide</span>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+                    <button onclick="switchInformationTab('shipping-returns')" id="btn-shipping-returns" class="info-tab-btn w-full px-5 py-4 rounded-xl text-left font-bold text-sm transition-all flex items-center justify-between shadow-sm bg-white border border-forest-100 text-forest-700 hover:bg-forest-100">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-truck-ramp-box text-amber-500"></i> Shipping & Returns</span>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+                    <button onclick="switchInformationTab('warranty-info')" id="btn-warranty-info" class="info-tab-btn w-full px-5 py-4 rounded-xl text-left font-bold text-sm transition-all flex items-center justify-between shadow-sm bg-white border border-forest-100 text-forest-700 hover:bg-forest-100">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-shield-heart text-amber-500"></i> Warranty Info</span>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+                    <button onclick="switchInformationTab('privacy-policy')" id="btn-privacy-policy" class="info-tab-btn w-full px-5 py-4 rounded-xl text-left font-bold text-sm transition-all flex items-center justify-between shadow-sm bg-white border border-forest-100 text-forest-700 hover:bg-forest-100">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-user-shield text-amber-500"></i> Privacy Policy</span>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+                </div>
+
+                <div class="lg:col-span-9 bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm min-h-[500px]">
+                    
+                    <div id="content-sizing-guide" class="info-content-pane space-y-6 hidden">
+                        <div class="border-b border-gray-100 pb-4">
+                            <h2 class="text-2xl font-bold text-forest-700 flex items-center gap-3">
+                                <i class="fa-solid fa-ruler-combined text-amber-500"></i> Gear Sizing Guide Matrix
+                            </h2>
+                            <p class="text-xs text-gray-400 mt-1">Ensure your field gear maps properly to situational constraints before ordering.</p>
+                        </div>
+                        
+                        <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                            <h3 class="text-base font-bold text-forest-800">1. Expedition Dome Tent Floor Capacities</h3>
+                            <p>All Camp Sales shelters are labeled based on professional field deployment capacity parameters:</p>
+                            
+                            <div class="overflow-x-auto pt-2">
+                                <table class="w-full text-left border-collapse rounded-xl overflow-hidden text-xs">
+                                    <thead>
+                                        <tr class="bg-forest-800 text-white">
+                                            <th class="p-3">Model Footprint</th>
+                                            <th class="p-3">Optimal Capacity</th>
+                                            <th class="p-3">Dimensions (L × W × H)</th>
+                                            <th class="p-3">Best Use Case</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100 bg-forest-50/50">
+                                        <tr>
+                                            <td class="p-3 font-semibold text-forest-700">Scout Solo 1P</td>
+                                            <td class="p-3">1 Adult Person</td>
+                                            <td class="p-3">220 x 90 x 105 cm</td>
+                                            <td class="p-3">Lightweight Backpacking</td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="p-3 font-semibold text-forest-700">Outpost Duo 2P</td>
+                                            <td class="p-3">2 Adult Persons</td>
+                                            <td class="p-3">210 x 140 x 110 cm</td>
+                                            <td class="p-3">Three-Season Trekking</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-semibold text-forest-700">Basecamp Quad 4P</td>
+                                            <td class="p-3">4 Adult Persons</td>
+                                            <td class="p-3">240 x 210 x 130 cm</td>
+                                            <td class="p-3">Family & High Altitude</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3 class="text-base font-bold text-forest-800 pt-4">2. Technical Backpack Frame Volume Sizing</h3>
+                            <p>Correct torso frame measurements avoid field load failures. Measure structural height from your vertebrae down to your iliac crest baseline profile:</p>
+                            <ul class="list-disc list-inside space-y-2 pl-2">
+                                <li><strong class="text-forest-700">Small Frames (Under 45 cm):</strong> Best suited for daypacks and short technical trails.</li>
+                                <li><strong class="text-forest-700">Medium/Large Frames (45 cm - 55 cm+):</strong> Required for internal frame matrices over 55 Liters.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="content-shipping-returns" class="info-content-pane space-y-6 hidden">
+                        <div class="border-b border-gray-100 pb-4">
+                            <h2 class="text-2xl font-bold text-forest-700 flex items-center gap-3">
+                                <i class="fa-solid fa-truck-ramp-box text-amber-500"></i> Shipping Lines & Return Policies
+                            </h2>
+                            <p class="text-xs text-gray-400 mt-1">Logistics infrastructure operations for standard and regional distribution.</p>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                            <h3 class="text-base font-bold text-forest-800">1. Local & Regional Myanmar Distribution Lines</h3>
+                            <p>We process transactions out of our Yangon core fulfillment center structure. Delivery timelines are categorized below:</p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                                <div class="p-4 rounded-xl bg-forest-50 border border-forest-100">
+                                    <h4 class="font-bold text-forest-700 mb-1"><i class="fa-solid fa-city text-xs text-amber-500 mr-1"></i> Yangon Township Grid</h4>
+                                    <p class="text-xs text-gray-500">Delivered inside 24 to 48 hours. Cash on Delivery (COD) processing supported safely.</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-forest-50 border border-forest-100">
+                                    <h4 class="font-bold text-forest-700 mb-1"><i class="fa-solid fa-map-location-dot text-xs text-amber-500 mr-1"></i> Alternate States & Regions</h4>
+                                    <p class="text-xs text-gray-500">Dispatched via trusted local drop networks (e.g., Royal Express). Arrives within 3–5 operational days.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="text-base font-bold text-forest-800 pt-4">2. 7-Day Field Return Conditions</h3>
+                            <p>If your provision profiles do not fulfill baseline expectations, return tracking vectors are accepted under these specific conditions:</p>
+                            <ul class="list-decimal list-inside space-y-2 pl-2">
+                                <li>Items must remain entirely unused, packaged cleanly within their initial product tags.</li>
+                                <li>Tents must not have been staked out or weathered down onto outdoor terrain fields.</li>
+                                <li>Fulfillment receipt sheets or electronic invoice nodes must be attached clearly during inspection.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="content-warranty-info" class="info-content-pane space-y-6 hidden">
+                        <div class="border-b border-gray-100 pb-4">
+                            <h2 class="text-2xl font-bold text-forest-700 flex items-center gap-3">
+                                <i class="fa-solid fa-shield-heart text-amber-500"></i> Field Warranty Integrity Rules
+                            </h2>
+                            <p class="text-xs text-gray-400 mt-1">Your coverage baseline protection matrix against authentic structural defects.</p>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                            <blockquote class="border-l-4 border-amber-500 bg-forest-50 p-4 rounded-r-xl text-xs font-medium text-forest-700">
+                                "Every authentic tent, hydration module, and sleep frame kit from Camp Sales is built for rigorous exploration utility and backed by a comprehensive warranty configuration tracker."
+                            </blockquote>
+
+                            <h3 class="text-base font-bold text-forest-800 pt-2">1. Scope of 12-Month Coverage</h3>
+                            <p>Our warranties strictly safeguard against systemic technical failures including:</p>
+                            <ul class="list-disc list-inside space-y-1.5 pl-2">
+                                <li>Defective tape-sealed seams or unraveled structural stitching links.</li>
+                                <li>Malfunctioning heavy-duty zipper mechanisms or cracked tracking locks.</li>
+                                <li>Snapping errors found inside premium aircraft-grade aluminum tension poles.</li>
+                            </ul>
+
+                            <h3 class="text-base font-bold text-forest-800 pt-4">2. Non-Covered Field Incidents</h3>
+                            <p>Damage resulting from incorrect field configuration settings or extreme natural wear is excluded:</p>
+                            <p class="text-xs text-gray-500 pl-2">✘ Fabric punctures caused by sharp stones, open campfire sparks, or high wind tearing.<br>✘ Mold build-up from packing gear away while damp or improperly dried.</p>
+                        </div>
+                    </div>
+
+                    <div id="content-privacy-policy" class="info-content-pane space-y-6 hidden">
+                        <div class="border-b border-gray-100 pb-4">
+                            <h2 class="text-2xl font-bold text-forest-700 flex items-center gap-3">
+                                <i class="fa-solid fa-user-shield text-amber-500"></i> Security Data Privacy Policy
+                            </h2>
+                            <p class="text-xs text-gray-400 mt-1">Clear insights into how your tracking details are managed.</p>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                            <h3 class="text-base font-bold text-forest-800">1. Operational Credentials Collection</h3>
+                            <p>When you register profiles into our platform arrays, we securely cache specific tracking nodes:</p>
+                            <ul class="list-disc list-inside space-y-1 pl-2 text-xs">
+                                <li>Identity tags (Username, phone metrics, physical delivery endpoints).</li>
+                                <li>Cart cache records stored inside localized client matrices.</li>
+                            </ul>
+
+                            <h3 class="text-base font-bold text-forest-800 pt-4">2. Zero Third-Party Monetization Policy</h3>
+                            <p>We do not lease, trade, or distribute user identification structures to independent tracking firms. All information maps exclusively into localized logistics routines to expedite delivery pipelines smoothly across Myanmar townships.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-forest-800 text-gray-400 pt-20 pb-10 border-t border-forest-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-1">
+                <a href="#" class="text-2xl font-bold text-white tracking-tight flex items-center gap-2 mb-6">
+                    <i class="fa-solid fa-tent text-amber-500"></i>
+                    <span>Camp<span class="text-emerald-400">Sales</span></span>
+                </a>
+                <p class="text-sm leading-relaxed mb-6">Providing high-grade, reliable camping and hiking gear to outdoor enthusiasts across Myanmar.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Quick Navigation</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home Base</a></li>
+                    <li><a href="index.html#categories" class="hover:text-white transition-colors">Gear Categories</a></li>
+                    <li><a href="index.html#promotions" class="hover:text-white transition-colors">Special Offers</a></li>
+                    <li><a href="index.html#reviews" class="hover:text-white transition-colors">Customer Stories</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Support & Policy</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="info.html?tab=sizing-guide" class="hover:text-white transition-colors">Sizing Guide</a></li>
+                    <li><a href="info.html?tab=shipping-returns" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+                    <li><a href="info.html?tab=warranty-info" class="hover:text-white transition-colors">Warranty Info</a></li>
+                    <li><a href="info.html?tab=privacy-policy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div id="contact">
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Get in Touch</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-amber-500"></i>
+                        <span>No. 123, Pyay Road, Kamayut Township, Yangon, Myanmar</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-amber-500"></i>
+                        <span>+95 9 1234 56789</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-amber-500"></i>
+                        <span>info@campsales.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-forest-700/60 text-center md:flex md:items-center md:justify-between text-xs">
+            <p>&copy; 2026 Camp Sales Co., Ltd. All rights reserved.</p>
+            <p class="mt-4 md:mt-0">Designed beautifully for the wilderness.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Profile Dropdown Toggle Logic
+        const profileButton = document.getElementById('profileButton');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        profileButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileDropdown.classList.contains('hidden') && !profileButton.contains(e.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+
+        // Mobile Menu Mobile Drawer Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const cartCountBadge = document.getElementById('cartCountBadge');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            synchronizeCartCounterUI();
+            
+            // Check for explicit query strings to auto-route user tabs (e.g., info.html?tab=shipping-returns)
+            const targetUrlParams = new URLSearchParams(window.location.search);
+            const explicitTabId = targetUrlParams.get('tab');
+            
+            if (explicitTabId && document.getElementById('content-' + explicitTabId)) {
+                switchInformationTab(explicitTabId);
+            } else {
+                switchInformationTab('sizing-guide'); // Default load node
+            }
+        });
+
+        // DYNAMIC CONTENT VIEW SWITCH CONTROLLER
+        function switchInformationTab(targetTabId) {
+            // Hide all text blocks 
+            const contentPanes = document.querySelectorAll('.info-content-pane');
+            contentPanes.forEach(pane => pane.classList.add('hidden'));
+
+            // Remove emphasis styles across navigation buttons
+            const actionButtons = document.querySelectorAll('.info-tab-btn');
+            actionButtons.forEach(btn => {
+                btn.classList.remove('bg-forest-700', 'text-white', 'border-transparent');
+                btn.classList.add('bg-white', 'border-forest-100', 'text-forest-700');
+            });
+
+            // Showcase targeted data window pane
+            document.getElementById('content-' + targetTabId).classList.remove('hidden');
+
+            // Apply active structural emphasis styles onto current tab control block
+            const activeTargetBtn = document.getElementById('btn-' + targetTabId);
+            if (activeTargetBtn) {
+                activeTargetBtn.classList.remove('bg-white', 'border-forest-100', 'text-forest-700');
+                activeTargetBtn.classList.add('bg-forest-700', 'text-white', 'border-transparent');
+            }
+        }
+
+        // RE-SYNC CART LOCAL COUNTER VALUE
+        function synchronizeCartCounterUI() {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            let aggregatedTotal = activeCartCollection.reduce((acc, item) => acc + item.quantity, 0);
+            cartCountBadge.textContent = aggregatedTotal;
+        }
+    </script>
+</body>
+</html>
