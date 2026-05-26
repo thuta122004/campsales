@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Sales - Explore the Wild</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            50: '#f2f7f4',
+                            100: '#e2eee7',
+                            600: '#2d6a4f',
+                            700: '#1b4332',
+                            800: '#081c15',
+                        },
+                        amber: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-forest-50 text-forest-800 font-sans antialiased">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-forest-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-forest-700 tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-tent text-amber-500"></i>
+                        <span>Camp<span class="text-forest-600">Sales</span></span>
+                    </a>
+                </div>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Home</a>
+                    
+                    <!-- Products Dropdown Trigger -->
+                    <div class="relative group">
+                        <button class="text-amber-600 font-medium transition-colors flex items-center gap-1 py-2">
+                            Products <i class="fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                            <a href="products.html" class="block px-4 py-2 text-sm text-amber-600 font-semibold bg-forest-50 transition-colors">Product Explorer</a>
+                            <a href="index.html#categories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Categories</a>
+                            <a href="index.html#promotions" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Promotions</a>
+                            <a href="index.html#reviews" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Reviews</a>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">About</a>
+                    <a href="contact.html" class="text-forest-700 hover:text-amber-600 font-medium transition-colors">Contact</a>
+                </div>
+
+                <!-- Right Side Actions (Cart & Profile) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Cart Indicator Link -->
+                    <a href="cart.html" class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors block">
+                        <i class="fa-solid fa-basket-shopping text-xl"></i>
+                        <span id="cartCountBadge" class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
+                    </a>
+
+                    <!-- Profile Dropdown Container -->
+                    <div class="relative" id="profile-container">
+                        <button id="profileButton" class="flex items-center gap-2 p-1 rounded-full border border-gray-200 hover:border-forest-600 transition-colors focus:outline-none">
+                            <img src="images/user_profile.jpg" alt="User Profile" class="h-8 w-8 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'">
+                        </button>
+                        
+                        <!-- Profile Menu Dropdown -->
+                        <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden z-50">
+                            <div class="px-4 py-2 border-b border-gray-100">
+                                <p class="text-xs text-gray-400">Signed in as</p>
+                                <p class="text-sm font-semibold text-forest-800 truncate">Thet Naung Soe</p>
+                            </div>
+                            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-regular fa-user mr-2 text-gray-400"></i> My Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors"><i class="fa-solid fa-gear mr-2 text-gray-400"></i> Settings</a>
+                            <hr class="my-1 border-gray-100">
+                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"><i class="fa-solid fa-arrow-right-from-bracket mr-2 text-red-400"></i> Logout</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-forest-700 hover:text-amber-600">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Link list -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-1">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Home</a>
+            <a href="products.html" class="block px-3 py-2 rounded-md text-base font-medium text-amber-600 bg-forest-50">Products</a>
+            <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">About</a>
+            <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-forest-700 hover:bg-forest-50">Contact</a>
+        </div>
+    </nav>
+
+    <!-- EXPLORER HEADER HERO SECTION -->
+    <div class="relative bg-forest-800 text-white py-14 md:py-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1920&q=80" alt="Mountain camping backdrop" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-forest-800/50 via-forest-800 to-forest-50"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
+            <span class="text-amber-500 font-bold uppercase tracking-wider text-xs block mb-2">Wilderness Outpost Catalogue</span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">Explore Premium Field Gear</h1>
+            <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Equip your expeditions with field-tested gear structured to withstand ultimate elemental extremes across regional corridors.
+            </p>
+        </div>
+    </div>
+
+    <!-- MAIN PRODUCT CATALOGUE GRID AND FILTERS -->
+    <div class="pb-24 pt-6 bg-forest-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- LEFT SIDEBAR: FILTERS -->
+                <div class="lg:col-span-3 space-y-6 sticky top-24">
+                    
+                    <!-- Search Input Box Card -->
+                    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-3">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-forest-700">Search Products</label>
+                        <div class="relative">
+                            <input type="text" id="searchInput" class="w-full pl-10 pr-4 py-2.5 bg-forest-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all" placeholder="e.g. Waterproof Tent...">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400 text-xs">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Interactive Filter List -->
+                    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
+                        <div>
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-forest-700">Gear Categories</h3>
+                            <p class="text-[10px] text-gray-400">Filter catalogue choices instantly</p>
+                        </div>
+                        <div class="space-y-1.5" id="categoryFilterContainer">
+                            <button data-category="all" class="category-btn w-full text-left px-3 py-2 rounded-xl text-sm font-bold bg-amber-500 text-white transition-all flex items-center justify-between">
+                                <span>All Outpost Gear</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                            <button data-category="tents" class="category-btn w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-forest-50 hover:text-forest-700 transition-all flex items-center justify-between">
+                                <span>Shelters & Tents</span> <i class="fa-solid fa-chevron-right text-[10px] opacity-0"></i>
+                            </button>
+                            <button data-category="bags" class="category-btn w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-forest-50 hover:text-forest-700 transition-all flex items-center justify-between">
+                                <span>Backpacks & Packs</span> <i class="fa-solid fa-chevron-right text-[10px] opacity-0"></i>
+                            </button>
+                            <button data-category="sleeping" class="category-btn w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-forest-50 hover:text-forest-700 transition-all flex items-center justify-between">
+                                <span>Sleeping Systems</span> <i class="fa-solid fa-chevron-right text-[10px] opacity-0"></i>
+                            </button>
+                            <button data-category="lights" class="category-btn w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-forest-50 hover:text-forest-700 transition-all flex items-center justify-between">
+                                <span>Illumination Tech</span> <i class="fa-solid fa-chevron-right text-[10px] opacity-0"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Price Range Slider -->
+                    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label class="text-xs font-bold uppercase tracking-wider text-forest-700">Max Budget Cap</label>
+                            <span id="priceDisplay" class="text-xs font-extrabold text-amber-600">KS 350,000</span>
+                        </div>
+                        <input type="range" id="priceRange" min="20000" max="350000" step="5000" value="350000" class="w-full accent-amber-500 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-[10px] font-bold text-gray-400">
+                            <span>KS 20,000</span>
+                            <span>KS 350,000</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT CONTENT AREA: GRID & PAGINATION -->
+                <div class="lg:col-span-9 space-y-8">
+                    
+                    <!-- Sorting & Catalogue Status Bar -->
+                    <div class="bg-white px-5 py-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="text-xs text-gray-500">
+                            Showing <span id="itemCountDisplay" class="font-bold text-forest-800">0</span> reliable products matching your criteria
+                        </div>
+                        <div class="flex items-center gap-2 self-end sm:self-auto">
+                            <label for="sortSelect" class="text-xs font-semibold text-gray-400 whitespace-nowrap">Sort By:</label>
+                            <select id="sortSelect" class="bg-forest-50 border border-gray-200 rounded-xl px-3 py-1.5 text-xs font-bold text-forest-700 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer">
+                                <option value="default">System Default</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Top Rated Reviews</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Products Destination Target Container -->
+                    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Content Injected Dynamically via VanillaJS Javascript -->
+                    </div>
+
+                    <!-- Dynamic Pagination Numbers Row -->
+                    <div id="paginationContainer" class="flex items-center justify-center gap-2 pt-6">
+                        <!-- Navigation page elements injected dynamically -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODERN FOOTER -->
+    <footer class="bg-forest-800 text-gray-400 pt-20 pb-10 border-t border-forest-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <!-- Brand Column -->
+            <div class="md:col-span-1">
+                <a href="#" class="text-2xl font-bold text-white tracking-tight flex items-center gap-2 mb-6">
+                    <i class="fa-solid fa-tent text-amber-500"></i>
+                    <span>Camp<span class="text-emerald-400">Sales</span></span>
+                </a>
+                <p class="text-sm leading-relaxed mb-6">Providing high-grade, reliable camping and hiking gear to outdoor enthusiasts across Myanmar.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com" class="w-10 h-10 rounded-full bg-forest-700 hover:bg-amber-500 text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Quick Navigation</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home Base</a></li>
+                    <li><a href="index.html#categories" class="hover:text-white transition-colors">Gear Categories</a></li>
+                    <li><a href="index.html#promotions" class="hover:text-white transition-colors">Special Offers</a></li>
+                    <li><a href="index.html#reviews" class="hover:text-white transition-colors">Customer Stories</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Support & Policy</h3>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">Sizing Guide</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Warranty Info</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact/About Section Link -->
+            <div id="contact">
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-6">Get in Touch</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-amber-500"></i>
+                        <span>No. 123, Pyay Road, Kamayut Township, Yangon, Myanmar</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-amber-500"></i>
+                        <span>+95 9 1234 56789</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-amber-500"></i>
+                        <span>info@campsales.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-forest-700/60 text-center md:flex md:items-center md:justify-between text-xs">
+            <p>&copy; 2026 Camp Sales Co., Ltd. All rights reserved.</p>
+            <p class="mt-4 md:mt-0">Designed beautifully for the wilderness.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT MATRICES AND APPLICATION HANDLERS -->
+    <script>
+        // --- 20 ITEM OUTDOOR DATASET MATRIX ---
+        const productsDataset = [
+            { id: 1, name: "Monsoon Proof Dome Tent", category: "tents", price: 185000, rating: 4.8, img: "images/monsoon_proof_dome_tent.png", desc: "Dual layer waterproofing optimized for heavy tropical rain spells." },
+            { id: 2, name: "Alti-Trail 65L Expedition Pack", category: "bags", price: 145000, rating: 4.9, img: "images/alti_trail_65l_expedition_pack.png", desc: "Ergonomic load distribution matrix featuring side hydration accessibility." },
+            { id: 3, name: "SubZero Thermal Sleep Bag", category: "sleeping", price: 89000, rating: 4.7, img: "images/subzero_thermal_sleep_bag.png", desc: "Compact down micro-insulation designed for chilly mountain ridges." },
+            { id: 4, name: "1200 Lumens Tactical Headlamp", category: "lights", price: 42000, rating: 4.6, img: "images/1200_lumens_tactical_headlamp.webp", desc: "Weatherproof illumination matrix with automated gesture beam switching." },
+            { id: 5, name: "Ultralight Solo Bivvy Shelter", category: "tents", price: 120000, rating: 4.4, img: "images/ultralight_solo_bivvy_shelter.png", desc: "Minimalist pack footprint framework tailored for lone trail hikers." },
+            { id: 6, name: "Ranger Waterproof Assault Pack", category: "bags", price: 95000, rating: 4.5, img: "images/ranger_waterproof_assault_pack.png", desc: "Heavy duty ripstop build featuring internal utility organization grids." },
+            { id: 7, name: "High-Density Self Inflating Pad", category: "sleeping", price: 65000, rating: 4.7, img: "images/high_density_self_inflating_pad.webp", desc: "Aero-cell grid structures ensuring comfortable terrain insulation." },
+            { id: 8, name: "Solar-Charge Wilderness Lantern", category: "lights", price: 35000, rating: 4.3, img: "images/solar_charge_wilderness_lantern.png", desc: "Integrated solar conversion power cell with mechanical hand crank backup." },
+            { id: 9, name: "Basecamp Hexagonal Tarp Canopy", category: "tents", price: 78000, rating: 4.6, img: "images/basecamp_hexagonal_tarp_canopy.webp", desc: "Reinforced tension points configured for unpredictable heavy winds." },
+            { id: 10, name: "Summit Ridge 45L Pack", category: "bags", price: 115000, rating: 4.8, img: "images/summit_ridge_45l_pack.png", desc: "Suspended air-mesh suspension backplate structure for extra cooling." },
+            { id: 11, name: "Down-Fill Sub-Altitude Cushion", category: "sleeping", price: 28000, rating: 4.2, img: "images/down_fill_sub_altitude_cushion.png", desc: "Highly compressible memory core optimized for standard side packs." },
+            { id: 12, name: "Cree-LED High Focus Spotlight", category: "lights", price: 58000, rating: 4.5, img: "images/cree_led_high_focus_spotlight.png", desc: "Long-throw search beam built for locating routes inside dense forests." },
+            { id: 13, name: "Premium Geodesic 6-Man Tent", category: "tents", price: 340000, rating: 5.0, img: "images/premium_geodesic_6_man_tent.png", desc: "High-altitude structural stability framing for larger group operations." },
+            { id: 14, name: "Urban Explorer Daily Daypack", category: "bags", price: 48000, rating: 4.1, img: "images/urban_explorer_daily_daypack.png", desc: "Dual hybrid layout optimized for short weekend day-hikes or daily work." },
+            { id: 15, name: "Double-Layer Breathable Hammock", category: "sleeping", price: 39000, rating: 4.6, img: "images/double_layer_breathable_hammock.webp", desc: "Military grade parachute nylon weave supporting up to 250kg safely." },
+            { id: 16, name: "Waterproof Power-Lantern Hub", category: "lights", price: 62000, rating: 4.7, img: "images/waterproof_power_lantern_hub.png", desc: "Outputs constant perimeter illumination while recharging small phones." },
+            { id: 17, name: "4-Season Geodesic Outpost Dome", category: "tents", price: 295000, rating: 4.9, img: "images/4_season_geodesic_outpost_dome.png", desc: "Anodized aluminum supporting pole structures for tough mountain storms." },
+            { id: 18, name: "Trail-Comfort Ergonomic Belt Pack", category: "bags", price: 32000, rating: 4.4, img: "images/trail_comfort_ergonomic_belt_pack.webp", desc: "Quick access configuration to keep primary tracking tools close." },
+            { id: 19, name: "Fleece Lining Comfort Insert", category: "sleeping", price: 25000, rating: 4.3, img: "images/fleece_lining_comfort_insert.png", desc: "Boosts standard sleeping bag thermal properties up by an extra +5°C." },
+            { id: 20, name: "Compact EDC Mini Penlight", category: "lights", price: 21000, rating: 4.5, img: "images/compact_edc_mini_penlight.png", desc: "High resilience aircraft-grade alloy casing built for shock drops." }
+        ];
+
+        // RETAINED MEMORY FILTER PARAMETERS
+        let activeCategory = "all";
+        let maxAppliedPrice = 350000;
+        let searchQueryString = "";
+        let selectedSortRoutine = "default";
+        let activePageIndex = 1;
+        const productsPerViewLayer = 6;
+
+        // UI Document Nodes Pointers
+        const productGrid = document.getElementById('productGrid');
+        const paginationContainer = document.getElementById('paginationContainer');
+        const itemCountDisplay = document.getElementById('itemCountDisplay');
+        const searchInput = document.getElementById('searchInput');
+        const priceRange = document.getElementById('priceRange');
+        const priceDisplay = document.getElementById('priceDisplay');
+        const sortSelect = document.getElementById('sortSelect');
+        const cartCountBadge = document.getElementById('cartCountBadge');
+
+        // TEMPLATE NATIVE DROPDOWN INTERACTION LOGIC MATCHERS
+        const profileButton = document.getElementById('profileButton');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        profileButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!profileDropdown.classList.contains('hidden') && !profileButton.contains(e.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // INIT LIFECYCLE INITIALIZER
+        document.addEventListener("DOMContentLoaded", () => {
+            synchronizeCartCounterUI();
+            bindFilteringEventHandlers();
+            executeFilteringPipeline();
+        });
+
+        // RE-SYNC CART LOCAL COUNTER VALUE
+        function synchronizeCartCounterUI() {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            let aggregatedTotal = activeCartCollection.reduce((acc, item) => acc + item.quantity, 0);
+            cartCountBadge.textContent = aggregatedTotal;
+        }
+
+        // BIND REGISTERED EVENT FILTERS
+        function bindFilteringEventHandlers() {
+            // Live Title Typing Listeners
+            searchInput.addEventListener('input', (e) => {
+                searchQueryString = e.target.value.trim().toLowerCase();
+                activePageIndex = 1;
+                executeFilteringPipeline();
+            });
+
+            // Tab Buttons Dynamic Style Mutator Loop
+            document.querySelectorAll('.category-btn').forEach(btnElement => {
+                btnElement.addEventListener('click', () => {
+                    document.querySelectorAll('.category-btn').forEach(el => {
+                        el.className = "category-btn w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-forest-50 hover:text-forest-700 transition-all flex items-center justify-between";
+                        const chevron = el.querySelector('i');
+                        if(chevron) chevron.classList.add('opacity-0');
+                    });
+                    
+                    btnElement.className = "category-btn w-full text-left px-3 py-2 rounded-xl text-sm font-bold bg-amber-500 text-white transition-all flex items-center justify-between";
+                    const activeChevron = btnElement.querySelector('i');
+                    if(activeChevron) activeChevron.classList.remove('opacity-0');
+                    
+                    activeCategory = btnElement.getAttribute('data-category');
+                    activePageIndex = 1;
+                    executeFilteringPipeline();
+                });
+            });
+
+            // Budget Slider Input Mutator
+            priceRange.addEventListener('input', (e) => {
+                maxAppliedPrice = parseInt(e.target.value);
+                priceDisplay.textContent = `KS ${maxAppliedPrice.toLocaleString()}`;
+                activePageIndex = 1;
+                executeFilteringPipeline();
+            });
+
+            // Sorting Selection Tracker
+            sortSelect.addEventListener('change', (e) => {
+                selectedSortRoutine = e.target.value;
+                activePageIndex = 1;
+                executeFilteringPipeline();
+            });
+        }
+
+        // RUN TRANSFORMATION PIPELINE MATRIX (SEARCH -> CATEGORY -> PRICE -> SORT -> PAGINATE)
+        function executeFilteringPipeline() {
+            // Filter
+            let processedDataset = productsDataset.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchQueryString) || product.desc.toLowerCase().includes(searchQueryString);
+                const matchesCategory = (activeCategory === "all") || (product.category === activeCategory);
+                const matchesPrice = product.price <= maxAppliedPrice;
+                return matchesSearch && matchesCategory && matchesPrice;
+            });
+
+            // Sort
+            if (selectedSortRoutine === "price-low") {
+                processedDataset.sort((a, b) => a.price - b.price);
+            } else if (selectedSortRoutine === "price-high") {
+                processedDataset.sort((a, b) => b.price - a.price);
+            } else if (selectedSortRoutine === "rating") {
+                processedDataset.sort((a, b) => b.rating - a.rating);
+            }
+
+            // Update UI Counters
+            itemCountDisplay.textContent = processedDataset.length;
+
+            // Paginate Setup calculations
+            const indexStartOffset = (activePageIndex - 1) * productsPerViewLayer;
+            const indexEndOffset = indexStartOffset + productsPerViewLayer;
+            const paginatedOutputSlice = processedDataset.slice(indexStartOffset, indexEndOffset);
+
+            // Populate Cards & Render Pagers
+            renderProductGridCards(paginatedOutputSlice);
+            generatePaginationControlsUI(processedDataset.length);
+        }
+
+        // ELEMENT GENERATOR: CARDS LAYOUT
+        function renderProductGridCards(viewableItemArray) {
+            if (viewableItemArray.length === 0) {
+                productGrid.innerHTML = `
+                    <div class="col-span-full bg-white border border-gray-100 rounded-3xl p-12 text-center space-y-3">
+                        <div class="text-4xl text-gray-300"><i class="fa-solid fa-boxes-packing"></i></div>
+                        <h4 class="text-sm font-bold text-forest-700">No Matching Gear Configurations Found</h4>
+                        <p class="text-xs text-gray-400 max-w-xs mx-auto">Adjust your active structural filters or parameters to view alternative field equipment lines.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            productGrid.innerHTML = viewableItemArray.map(item => `
+                <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col group">
+                    <div class="relative overflow-hidden aspect-video bg-gray-100 shrink-0">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 px-2 py-0.5 bg-forest-800/80 backdrop-blur-sm text-amber-500 rounded-lg text-[10px] font-black uppercase tracking-wider flex items-center gap-1">
+                            <i class="fa-solid fa-star text-[9px]"></i> ${item.rating}
+                        </span>
+                    </div>
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-600">${item.category}</span>
+                            <h3 class="text-sm font-extrabold text-forest-800 tracking-tight leading-tight group-hover:text-amber-600 transition-colors">${item.name}</h3>
+                            <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed pt-1">${item.desc}</p>
+                        </div>
+                        <div class="pt-2 border-t border-gray-50 flex items-center justify-between gap-2">
+                            <div class="min-w-0">
+                                <span class="text-[10px] text-gray-400 block font-medium">Outpost Price</span>
+                                <span class="text-sm font-black text-forest-700 truncate block">KS ${item.price.toLocaleString()}</span>
+                            </div>
+                            <button onclick="handleAddToCartPipeline(${item.id})" class="px-3.5 py-2 bg-forest-600 hover:bg-forest-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 shadow-sm">
+                                <i class="fa-solid fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ELEMENT GENERATOR: PAGINATION CONTROL INDICES BUTTONS
+        function generatePaginationControlsUI(totalMatchingCount) {
+            const calculatedTotalPages = Math.ceil(totalMatchingCount / productsPerViewLayer);
+            
+            if (calculatedTotalPages <= 1) {
+                paginationContainer.innerHTML = "";
+                return;
+            }
+
+            let controlElementsBuffer = [];
+
+            // Prev index setup
+            controlElementsBuffer.push(`
+                <button ${activePageIndex === 1 ? 'disabled' : ''} onclick="changeActivePageLayer(${activePageIndex - 1})" class="p-2 rounded-xl border border-gray-200 text-xs font-bold bg-white text-forest-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-forest-50 transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            `);
+
+            // Page indices loop
+            for (let i = 1; i <= calculatedTotalPages; i++) {
+                controlElementsBuffer.push(`
+                    <button onclick="changeActivePageLayer(${i})" class="w-8 h-8 rounded-xl text-xs font-black transition-all border ${activePageIndex === i ? 'bg-amber-500 border-transparent text-white shadow-sm' : 'bg-white border-gray-200 text-forest-700 hover:bg-forest-50'}">
+                        ${i}
+                    </button>
+                `);
+            }
+
+            // Next index setup
+            controlElementsBuffer.push(`
+                <button ${activePageIndex === calculatedTotalPages ? 'disabled' : ''} onclick="changeActivePageLayer(${activePageIndex + 1})" class="p-2 rounded-xl border border-gray-200 text-xs font-bold bg-white text-forest-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-forest-50 transition-colors">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            `);
+
+            paginationContainer.innerHTML = controlElementsBuffer.join('');
+        }
+
+        // PAGE ADJUSTMENT SLIDE DISPATCHER
+        function changeActivePageLayer(targetIndexSelected) {
+            activePageIndex = targetIndexSelected;
+            executeFilteringPipeline();
+            // Scroll layout view smoothly up to display grid area
+            window.scrollTo({ top: Math.max(0, productGrid.getBoundingClientRect().top + window.scrollY - 120), behavior: 'smooth' });
+        }
+
+        // --- CART WRITER STATE HANDLER (LOCALSTORAGE GATEWAY) ---
+        function handleAddToCartPipeline(selectedProductId) {
+            const targetedProductBlueprint = productsDataset.find(p => p.id === selectedProductId);
+            if (!targetedProductBlueprint) return;
+
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            const matchedExistingItemIndex = activeCartCollection.findIndex(cartItem => cartItem.id === selectedProductId);
+
+            if (matchedExistingItemIndex > -1) {
+                activeCartCollection[matchedExistingItemIndex].quantity += 1;
+            } else {
+                activeCartCollection.push({
+                    id: targetedProductBlueprint.id,
+                    name: targetedProductBlueprint.name,
+                    price: targetedProductBlueprint.price,
+                    category: targetedProductBlueprint.category,
+                    img: targetedProductBlueprint.img,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem('camp_sales_cart', JSON.stringify(activeCartCollection));
+            synchronizeCartCounterUI();
+            
+            // Non-blocking quick confirmation prompt
+            alert(`"${targetedProductBlueprint.name}" added to your tray.`);
+        }
+    </script>
+</body>
+</html>

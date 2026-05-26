@@ -56,7 +56,7 @@
                         </button>
                         <!-- Dropdown Menu -->
                         <div class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                            <a href="products.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Product List</a>
+                            <a href="products.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Product Explorer</a>
                             <a href="index.html#categories" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Categories</a>
                             <a href="index.html#promotions" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Promotions</a>
                             <a href="index.html#reviews" class="block px-4 py-2 text-sm text-gray-700 hover:bg-forest-50 hover:text-forest-700 transition-colors">Reviews</a>
@@ -72,7 +72,7 @@
                     <!-- Cart -->
                     <button class="relative p-2 text-forest-700 hover:text-amber-600 transition-colors">
                         <i class="fa-solid fa-basket-shopping text-xl"></i>
-                        <span class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">3</span>
+                        <span id="cartCountBadge" class="absolute top-0 right-0 bg-amber-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
                     </button>
 
                     <!-- Profile Dropdown Container -->
@@ -504,6 +504,19 @@
             e.preventDefault();
             alert('Your personal information modification configuration request has been saved successfully.');
         });
+
+        const cartCountBadge = document.getElementById('cartCountBadge');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            synchronizeCartCounterUI();
+        });
+
+        // RE-SYNC CART LOCAL COUNTER VALUE
+        function synchronizeCartCounterUI() {
+            let activeCartCollection = JSON.parse(localStorage.getItem('camp_sales_cart')) || [];
+            let aggregatedTotal = activeCartCollection.reduce((acc, item) => acc + item.quantity, 0);
+            cartCountBadge.textContent = aggregatedTotal;
+        }
     </script>
 </body>
 </html>
